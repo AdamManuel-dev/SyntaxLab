@@ -84,6 +84,7 @@ This document contains modular Mermaid diagrams for different layers of the Synt
 
 🧭 Overview Graph (High-Level Flow)
 
+```mermaid
 flowchart TD
     A["📝 Developer Prompt"] --> B["🧠 Model Orchestration"]
     B --> C["✍️ Code Generation"]
@@ -94,12 +95,13 @@ flowchart TD
     G --> H["💾 Cache"]
     G --> I["🚀 Deliver to CI / IDE"]
     F --> J["🔁 Prompt Refinement"] --> A
-
+```
 
 ⸻
 
 🧠 LLM Generation Layer
 
+```mermaid
 flowchart TD
     A["📝 Developer Prompt"] --> B["🧠 Model Orchestration"]
     B --> C1["Claude"]
@@ -109,12 +111,13 @@ flowchart TD
     C2 --> D
     C3 --> D
     D --> E["📄 Aggregate Candidate Pool"]
-
+```
 
 ⸻
 
 🔍 Validation Layer (Static + Semantic Checks)
 
+```mermaid
 flowchart TD
     A["📄 Aggregate Candidate Pool"] --> B["🔍 Static Validation"]
     A --> C["⚠️ Hallucination Detection"]
@@ -131,37 +134,41 @@ flowchart TD
     D --> D2["🗑️ Enforce Anonymization"]
     D --> D3["📒 Log PHI Access"]
     D --> D4["🔐 Encrypt PHI"]
-
+```
 
 ⸻
 
 🧪 Mutation Testing Layer
 
+```mermaid
 flowchart TD
     A["🔍 Static Validation"] --> B["🧬 Inject Mutants"]
     B --> C["🧪 Execute Tests"]
     C --> D{"Mutation Score ≥ Threshold?"}
     D -- No --> E["🛠️ Refine Tests"] --> B
     D -- Yes --> F["📊 Score U(x)"]
-
+```
 
 ⸻
 
 📊 Scoring + Decision Layer
 
+```mermaid
 flowchart TD
     A["📊 Score Candidates"] --> B{"Pareto Optimal?"}
     B -- Yes --> C["✅ Final Validated"]
     B -- No --> D["🔁 Refine Prompt / Config"] --> E["📝 Developer Prompt"]
-
+```
 
 ⸻
 
 📦 Output Layer
 
+```mermaid
 flowchart TD
     A["✅ Final Validated"] --> B["💾 Store in Cache"]
     A --> C["🚀 Deliver to IDE / CI"]
+```
 
 Let me know if you want an animated graph switcher, color themes, or PDF export.
 
