@@ -84,6 +84,57 @@ This document contains modular Mermaid diagrams for different layers of the Synt
 
 ⸻
 
+```mermaid
+flowchart TD
+
+  %% === INPUT & GENERATION ===
+  subgraph "🧠 Prompt + Model Orchestration"
+    A["📝 Developer Prompt"] --> B["🧠 Model Router (Claude, GPT-4, OSS)"]
+    B --> C["✍️ Code Generation per Model"]
+    C --> D["📄 Aggregate Candidate Pool"]
+  end
+
+  %% === VALIDATION LAYER ===
+  subgraph "🔍 Validation Layer"
+    D --> V1["🔍 Static Analysis (AST, Typecheck, Lint)"]
+    D --> V2["⚠️ Hallucination Detection"]
+    D --> V3["🔐 Compliance Enforcement"]
+
+    %% Hallucination Breakdown
+    V2 --> V2a["🔍 Unknown Symbol Check"]
+    V2 --> V2b["📚 SDK/API Graph Lookup"]
+    V2 --> V2c["🧠 Self-Critique (LLM Edit Pass)"]
+
+    %% Compliance Breakdown
+    V3 --> V3a["📜 Redact Logs (GDPR Art. 5)"]
+    V3 --> V3b["🗑️ Anonymize on Deletion (GDPR Art. 17)"]
+    V3 --> V3c["📒 Audit Trail (HIPAA §164.312)"]
+    V3 --> V3d["🔐 Encrypt PHI at Rest/In Transit"]
+  end
+
+  %% === MUTATION TESTING ===
+  subgraph "🧪 Mutation Testing"
+    V1 --> M1["🧬 Inject Mutants"]
+    M1 --> M2["🧪 Execute Test Suite"]
+    M2 --> M3{"Mutation Score ≥ Threshold?"}
+    M3 -- No --> M4["🛠️ Refine Test Cases"] --> C
+    M3 -- Yes --> S1["📊 Score Each Candidate U(x)"]
+  end
+
+  %% === SELECTION ===
+  subgraph "📈 Scoring & Selection"
+    S1 --> S2{"Is Pareto Optimal?"}
+    S2 -- No --> R1["🔁 Refine Prompt/Config"] --> A
+    S2 -- Yes --> F1["✅ Final Validated Output"]
+  end
+
+  %% === DELIVERY ===
+  subgraph "📦 Output & Integration"
+    F1 --> X1["💾 Cache for Retrieval"]
+    F1 --> X2["🚀 Send to IDE / CI / GitHub"]
+  end
+```
+
 🧭 Overview Graph (High-Level Flow)
 
 ```mermaid
