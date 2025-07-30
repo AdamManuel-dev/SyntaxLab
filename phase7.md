@@ -1134,9 +1134,7 @@ interface Phase7PerformanceRequirements {
 4. **Architecture Recommendation System**: AI-guided architecture evolution
 
 ### Research Areas
-- Quantum-resistant encryption for code generation
 - Neuromorphic computing for edge generation
-- Blockchain-based code provenance
 - AR/VR interfaces for code visualization
 
 ## Conclusion
