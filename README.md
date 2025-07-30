@@ -3,6 +3,8 @@
 > 🚧 Currently in **Phase 1: Enhanced Foundation**  
 > Building the extensible CLI and AI-powered infrastructure for multi-language, multi-model code generation.
 
+> TODO: Add early psuedo-code review step with optional human-in-the-loop refinement
+
 ---
 
 ## 🔍 Overview
@@ -169,7 +171,7 @@ flowchart TD
     A["✅ Final Validated"] --> B["💾 Store in Cache"]
     A --> C["🚀 Deliver to IDE / CI"]
 ```
-
+g
 Let me know if you want an animated graph switcher, color themes, or PDF export.
 
 ---
