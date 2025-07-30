@@ -76,43 +76,94 @@ Enterprise customization, orchestration, semantic optimization.
 
 ---
 
-```mermaid
-graph TD
-    A["📝 Developer Prompt"] --> B["🧠 Model Orchestration (Claude, GPT-4, OSS)"]
-    B --> C["✍️ Code Generation per Model"]
-    C --> D["📄 Aggregate Candidate Pool"]
+📊 SyntaxLab Workflow Diagrams
 
-    D --> E["🔍 Static Validation (AST, Linting, Typecheck)"]
-    D --> F["⚠️ Hallucination Detection (API/Import Verification)"]
-    D --> G["🔐 Compliance Scan (SOC2, HIPAA, GDPR)"]
+This document contains modular Mermaid diagrams for different layers of the SyntaxLab platform. These are designed for composability and clarity — useful for onboarding, slide decks, CI/CD docs, and compliance reports.
 
-    E --> H["🧬 Mutation Injection"]
-    H --> I["🧪 Test Execution"]
-    I --> J{"Mutation Score ≥ Threshold?"}
+⸻
 
-    J -- No --> K["🛠️ Refine Test Suite via Prompt Adjustment"]
-    K --> C
+🧭 Overview Graph (High-Level Flow)
 
-    J -- Yes --> L["📊 Score Each Candidate (U(x): correctness, maintainability, cost)"]
+flowchart TD
+    A["📝 Developer Prompt"] --> B["🧠 Model Orchestration"]
+    B --> C["✍️ Code Generation"]
+    C --> D["🔍 Validation Layer"]
+    D --> E["🧪 Mutation Testing"]
+    E --> F["📊 Scoring + Pareto Selection"]
+    F --> G["✅ Validated Solution"]
+    G --> H["💾 Cache"]
+    G --> I["🚀 Deliver to CI / IDE"]
+    F --> J["🔁 Prompt Refinement"] --> A
 
-    L --> M{"Pareto Optimal?"}
-    M -- No --> N["📎 Prompt or Config Refinement"]
-    N --> R["🔁 Refined Prompt"]
-    R --> B
 
-    M -- Yes --> O["✅ Final Validated Solution"]
-    O --> P["💾 Store in Cache / Vector Index"]
-    O --> Q["🚀 Deliver to IDE / CI / Git"]
+⸻
 
-    subgraph Feedback
-        N --> R
-        K --> C
-    end
+🧠 LLM Generation Layer
 
-    %% Optional user refinement entry point
-    A --> Z["🔁 Prompt Refinement Triggered (user feedback or failed heuristics)"]
-    Z --> R
-```
+flowchart TD
+    A["📝 Developer Prompt"] --> B["🧠 Model Orchestration"]
+    B --> C1["Claude"]
+    B --> C2["GPT-4"]
+    B --> C3["OSS Model"]
+    C1 --> D["✍️ Generated Code"]
+    C2 --> D
+    C3 --> D
+    D --> E["📄 Aggregate Candidate Pool"]
+
+
+⸻
+
+🔍 Validation Layer (Static + Semantic Checks)
+
+flowchart TD
+    A["📄 Aggregate Candidate Pool"] --> B["🔍 Static Validation"]
+    A --> C["⚠️ Hallucination Detection"]
+    A --> D["🔐 Compliance Scan"]
+
+    %% Hallucination Details
+    C --> C1["🔍 Unknown API Check"]
+    C --> C2["🧠 LLM Self-Critique"]
+    C --> C3["📚 Symbol Graph Lookup"]
+    C --> C4["🔁 Confidence Score"]
+
+    %% Compliance Rules
+    D --> D1["📜 Redact Logs"]
+    D --> D2["🗑️ Enforce Anonymization"]
+    D --> D3["📒 Log PHI Access"]
+    D --> D4["🔐 Encrypt PHI"]
+
+
+⸻
+
+🧪 Mutation Testing Layer
+
+flowchart TD
+    A["🔍 Static Validation"] --> B["🧬 Inject Mutants"]
+    B --> C["🧪 Execute Tests"]
+    C --> D{"Mutation Score ≥ Threshold?"}
+    D -- No --> E["🛠️ Refine Tests"] --> B
+    D -- Yes --> F["📊 Score U(x)"]
+
+
+⸻
+
+📊 Scoring + Decision Layer
+
+flowchart TD
+    A["📊 Score Candidates"] --> B{"Pareto Optimal?"}
+    B -- Yes --> C["✅ Final Validated"]
+    B -- No --> D["🔁 Refine Prompt / Config"] --> E["📝 Developer Prompt"]
+
+
+⸻
+
+📦 Output Layer
+
+flowchart TD
+    A["✅ Final Validated"] --> B["💾 Store in Cache"]
+    A --> C["🚀 Deliver to IDE / CI"]
+
+Let me know if you want an animated graph switcher, color themes, or PDF export.
 
 ---
 
