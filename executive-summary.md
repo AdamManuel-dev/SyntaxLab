@@ -1,4 +1,4 @@
-Executive Product Requirements Document (PRD): SyntaxLab
+# Executive Product Requirements Document (PRD): SyntaxLab
 
 Version: 1.0
 
