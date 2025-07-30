@@ -106,12 +106,6 @@ style D2 fill:#ccf,stroke:#55f
 | Regression   | What rollback heuristics prevent score decay after plan merges?                                   |
 | Generation   | How do we train a generative model to produce high-scoring plans directly from prompts?           |
 
----
-
-## 📎 Suggested Next Steps
-
-* Run mutation correlation tests on steps vs. failure
-* Benchmark plan clustering techniques on real prompt lineage
 * Prototype a `scorePlanDiversity(planA, planB)` tool
 * Run summarization experiments over lineage diffs
 
