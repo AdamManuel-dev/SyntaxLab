@@ -76,6 +76,46 @@ Enterprise customization, orchestration, semantic optimization.
 
 ---
 
+```mermaid
+graph TD
+    A["📝 Developer Prompt"] --> B["🧠 Model Orchestration (Claude, GPT-4, OSS)"]
+    B --> C["✍️ Code Generation per Model"]
+    C --> D["📄 Aggregate Candidate Pool"]
+
+    D --> E["🔍 Static Validation (AST, Linting, Typecheck)"]
+    D --> F["⚠️ Hallucination Detection (API/Import Verification)"]
+    D --> G["🔐 Compliance Scan (SOC2, HIPAA, GDPR)"]
+
+    E --> H["🧬 Mutation Injection"]
+    H --> I["🧪 Test Execution"]
+    I --> J{"Mutation Score ≥ Threshold?"}
+
+    J -- No --> K["🛠️ Refine Test Suite via Prompt Adjustment"]
+    K --> C
+
+    J -- Yes --> L["📊 Score Each Candidate (U(x): correctness, maintainability, cost)"]
+
+    L --> M{"Pareto Optimal?"}
+    M -- No --> N["📎 Prompt or Config Refinement"]
+    N --> R["🔁 Refined Prompt"]
+    R --> B
+
+    M -- Yes --> O["✅ Final Validated Solution"]
+    O --> P["💾 Store in Cache / Vector Index"]
+    O --> Q["🚀 Deliver to IDE / CI / Git"]
+
+    subgraph Feedback
+        N --> R
+        K --> C
+    end
+
+    %% Optional user refinement entry point
+    A --> Z["🔁 Prompt Refinement Triggered (user feedback or failed heuristics)"]
+    Z --> R
+```
+
+---
+
 ## 📦 Technologies
 
 | Category            | Stack                                                                 |
